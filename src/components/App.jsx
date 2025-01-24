@@ -20,9 +20,9 @@ import '../styles/App.scss'
 function App() {
   const [grogu, setGroguPosition] = useState(0);
   // const board = [0, 1, 2, 3, 4, 5, 6];
-  // const [cookies, setCookiesQty] = useState([cookie, cookie, cookie]);
-  // const [eggs, setEggsQty] = useState([egg, egg, egg]);
-  // const [frogs, setFrogsQty] = useState([frog, frog, frog]);
+  const [cookies, setCookiesQty] = useState(['cookie', 'cookie', 'cookie']);
+  const [eggs, setEggsQty] = useState(['egg', 'egg', 'egg']);
+  const [frogs, setFrogsQty] = useState(['frog', 'frog', 'frog']);
   const [dice, setDice] = useState(0);
   //const [status, setStatus] = useState('');
   
@@ -30,11 +30,15 @@ function App() {
     const randomNumber = (Math.floor(Math.random()*4) +1);
     setDice(randomNumber);
 
-    if(dice === 4) {
-      setGroguPosition(grogu +1);
-      console.log(grogu);
+    if(randomNumber === 4) {
+      setGroguPosition(grogu + 1);
+    } else if (randomNumber === 3) {
+      setCookiesQty(cookies.slice(1));
+    } else if (randomNumber === 2) {
+      setEggsQty(eggs.slice(1));
+    } else if (randomNumber === 1) {
+      setFrogsQty(frogs.slice(1));
     }
-
   }
   const handleClick = () => {
     rollDice ();
