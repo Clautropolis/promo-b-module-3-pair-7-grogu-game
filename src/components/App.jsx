@@ -11,7 +11,8 @@ PASOS A SEGUIR:
 9. BONUS Al lanzar el dado, que aparezca un mensaje con la acción realizada.
 */}
 
-
+import Header from './Header';
+import Board from './Board';
 import { useState } from 'react';
 import '../styles/App.scss'
 
@@ -35,26 +36,17 @@ function App() {
     }
 
   }
-  const handleClick = (ev) => {
+  const handleClick = () => {
     rollDice ();
     
   }
 
   return (
       <>
-      <header>
-      <h1>¡Cuidado con Grogu!</h1>
-      </header>
+      <Header />
+      
       <main className="page">
-        <section className="board">
-        <div className="cell" id="0"><div className="grogu">👣</div></div>
-        <div className="cell" id="1"></div>
-        <div className="cell" id="2"></div>
-        <div className="cell" id="3"></div>
-        <div className="cell" id="4"></div>
-        <div className="cell" id="5"></div>
-        <div className="cell" id="6"></div>
-        </section>
+        <Board />
 
         <section>
         <button className="dice" onClick={handleClick}>Lanzar Dado</button>
