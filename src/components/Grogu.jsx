@@ -1,8 +1,8 @@
 
-function Grogo() {
+function Grogu() {
   return (
     <div className="grogu">👣</div>
   )
 }
 
-export default Grogo
+export default Grogu

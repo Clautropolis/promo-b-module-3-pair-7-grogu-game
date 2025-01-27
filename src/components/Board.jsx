@@ -12,7 +12,7 @@ function Board() {
         <div className="cell" id="4"></div>
         <div className="cell" id="5"></div>
         <div className="cell" id="6"></div>
-        </section>
+    </section>
   )
 }
 

@@ -15,6 +15,7 @@ import Header from './Header';
 import Board from './Board';
 import { useState } from 'react';
 import '../styles/App.scss'
+import Dice from './Dice';
 
 
 function App() {
@@ -24,23 +25,45 @@ function App() {
   const [eggs, setEggsQty] = useState(['egg', 'egg', 'egg']);
   const [frogs, setFrogsQty] = useState(['frog', 'frog', 'frog']);
   const [dice, setDice] = useState(0);
-  //const [status, setStatus] = useState('');
+  const [gameStatus, setGameStatus] = useState ('En curso');
+
   
   function rollDice() {
     const randomNumber = (Math.floor(Math.random()*4) +1);
     setDice(randomNumber);
 
+    //Si nos queda tiempo ponemos un comentario con la acción que se va a realizar.
+
+
     if(randomNumber === 4) {
       setGroguPosition(grogu + 1);
+      setGameStatus('Grogu avanza una posición')
     } else if (randomNumber === 3) {
-      setCookiesQty(cookies.slice(1));
+      if (cookies.length>0) {
+        setCookiesQty(cookies.slice(1));
+        setGameStatus('Has guardado una caja de galletas en la zona segura') 
+      } else {
+        setGameStatus('Todas las galletas ya han sido guardadas')
+      }
+
     } else if (randomNumber === 2) {
-      setEggsQty(eggs.slice(1));
-    } else if (randomNumber === 1) {
-      setFrogsQty(frogs.slice(1));
-    }
+      if (eggs.length>0) {
+        setEggsQty(eggs.slice(1));
+        setGameStatus('Has guardado un huevo en la zona segura') 
+      } else {
+        setGameStatus('Todos los huevos ya han sido guardadas')
+      }
+    }  else if (randomNumber === 1) {
+      if (frogs.length>0) {
+        setFrogsQty(frogs.slice(1));
+        setGameStatus('Has guardado una rana en la zona segura') 
+      } else {
+        setGameStatus('Todas las ranas ya han sido guardadas')
+      }
+    } 
   }
-  const handleClick = () => {
+
+  const handleClick = () => { //Ver si necesitamos incluir el ev. para algo
     rollDice ();
     
   }
@@ -52,9 +75,10 @@ function App() {
       <main className="page">
         <Board />
 
-        <section>
-        <button className="dice" onClick={handleClick}>Lanzar Dado</button>
-        <div className="game-status">En curso</div>
+        <section className="dice-container">
+
+        <Dice handleClick={handleClick}/>
+        <div className="game-status">{gameStatus}</div>
         </section>
 
         <section className="goods-container">
