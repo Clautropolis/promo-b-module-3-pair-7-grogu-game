@@ -20,7 +20,7 @@ import Dice from './Dice';
 
 function App() {
   const [grogu, setGroguPosition] = useState(0);
-  // const board = [0, 1, 2, 3, 4, 5, 6];
+  
   const [cookies, setCookiesQty] = useState(['cookie', 'cookie', 'cookie']);
   const [eggs, setEggsQty] = useState(['egg', 'egg', 'egg']);
   const [frogs, setFrogsQty] = useState(['frog', 'frog', 'frog']);
@@ -73,7 +73,7 @@ function App() {
       <Header />
       
       <main className="page">
-        <Board />
+        <Board grogu = {grogu} />
 
         <section className="dice-container">
 
