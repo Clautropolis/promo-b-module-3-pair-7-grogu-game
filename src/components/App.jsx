@@ -16,6 +16,9 @@ import Board from './Board';
 import { useState } from 'react';
 import '../styles/App.scss'
 import Dice from './Dice';
+import Form from './Form';
+import { use } from 'react';
+import GameStatus from './GameStatus';
 
 
 function App() {
@@ -26,13 +29,15 @@ function App() {
   const [frogs, setFrogsQty] = useState(['frog', 'frog', 'frog']);
   const [dice, setDice] = useState(0);
   const [gameStatus, setGameStatus] = useState ('En curso');
+  const [name, setName] = useState ('');
 
-  
+  const handleClick = () => { 
+    rollDice ();
+  }
+
   function rollDice() {
     const randomNumber = (Math.floor(Math.random()*4) +1);
     setDice(randomNumber);
-
-    //Si nos queda tiempo ponemos un comentario con la acción que se va a realizar.
 
 
     if(randomNumber === 4) {
@@ -51,7 +56,7 @@ function App() {
         setEggsQty(eggs.slice(1));
         setGameStatus('Has guardado un huevo en la zona segura') 
       } else {
-        setGameStatus('Todos los huevos ya han sido guardadas')
+        setGameStatus('Todos los huevos ya han sido guardados')
       }
     }  else if (randomNumber === 1) {
       if (frogs.length>0) {
@@ -63,10 +68,6 @@ function App() {
     } 
   }
 
-  const handleClick = () => { //Ver si necesitamos incluir el ev. para algo
-    rollDice ();
-    
-  }
 
   return (
       <>
@@ -74,11 +75,15 @@ function App() {
       
       <main className="page">
         <Board grogu = {grogu} />
+        <Form setName={setName} name={name}/>
 
         <section className="dice-container">
 
         <Dice handleClick={handleClick}/>
-        <div className="game-status">{gameStatus}</div>
+
+        <GameStatus gameStatus={gameStatus}/>
+
+        
         </section>
 
         <section className="goods-container">

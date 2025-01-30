@@ -1,9 +1,11 @@
 
 
-function Dice(props) {
+function Dice({handleClick}) {
+
+ 
   return (
 
-    <button className="dice" onClick={props.handleClick}>🎲</button> 
+    <button className="dice" onClick={handleClick}>🎲</button> 
     
   )
 }
