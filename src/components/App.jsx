@@ -46,7 +46,7 @@ function App() {
     } else if (randomNumber === 3) {
       if (cookies.length>0) {
         setCookiesQty(cookies.slice(1));
-        setGameStatus('Has guardado una caja de galletas en la zona segura') 
+        setGameStatus(`${name} ha guardado una caja de galletas en la zona segura`) 
       } else {
         setGameStatus('Todas las galletas ya han sido guardadas')
       }
@@ -54,14 +54,14 @@ function App() {
     } else if (randomNumber === 2) {
       if (eggs.length>0) {
         setEggsQty(eggs.slice(1));
-        setGameStatus('Has guardado un huevo en la zona segura') 
+        setGameStatus(`${name} ha guardado un huevo en la zona segura`) 
       } else {
         setGameStatus('Todos los huevos ya han sido guardados')
       }
     }  else if (randomNumber === 1) {
       if (frogs.length>0) {
         setFrogsQty(frogs.slice(1));
-        setGameStatus('Has guardado una rana en la zona segura') 
+        setGameStatus(`${name} ha guardado una rana en la zona segura`) 
       } else {
         setGameStatus('Todas las ranas ya han sido guardadas')
       }
