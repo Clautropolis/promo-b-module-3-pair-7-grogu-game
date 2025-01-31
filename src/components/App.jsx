@@ -13,23 +13,37 @@ PASOS A SEGUIR:
 
 import Header from './Header';
 import Board from './Board';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/App.scss'
 import Dice from './Dice';
 import Form from './Form';
-import { use } from 'react';
 import GameStatus from './GameStatus';
+import local from '../services/localStorage';
 
 
 function App() {
-  const [grogu, setGroguPosition] = useState(0);
+  const [grogu, setGroguPosition] = useState(local.get("groguPosition", 0));
   
-  const [cookies, setCookiesQty] = useState(['cookie', 'cookie', 'cookie']);
-  const [eggs, setEggsQty] = useState(['egg', 'egg', 'egg']);
-  const [frogs, setFrogsQty] = useState(['frog', 'frog', 'frog']);
+  const [cookies, setCookiesQty] = useState(local.get("cookiesQty", ["cookie", "cookie", "cookie"]));
+  const [eggs, setEggsQty] = useState(local.get("eggsQty", ["egg", "egg", "egg"]));
+  const [frogs, setFrogsQty] = useState(local.get("frogsQty", ["frog", "frog", "frog"]));
   const [dice, setDice] = useState(0);
   const [gameStatus, setGameStatus] = useState ('En curso');
   const [name, setName] = useState ('');
+
+  useEffect(() => {
+    local.set("groguPosition", grogu);
+    local.set("eggsQty", eggs);
+    local.set("cookiesQty", cookies);
+    local.set("frogsQty", frogs);
+
+    if(grogu === 6) {
+      setGameStatus("¡¡Grogu se ha comido el cargamento!! Has perdido")
+    } else if (grogu !== 6 && cookies.length === 0 && frogs.length === 0 && eggs.length === 0) {
+      setGameStatus("Ganaste, Mando completa la misión")
+    }
+  }, [grogu, eggs, cookies, frogs]);
+
 
   const handleClick = () => { 
     rollDice ();
