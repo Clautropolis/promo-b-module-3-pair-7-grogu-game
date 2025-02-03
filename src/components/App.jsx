@@ -19,6 +19,8 @@ import Dice from './Dice';
 import Form from './Form';
 import GameStatus from './GameStatus';
 import local from '../services/localStorage';
+import GoodsContainer from './GoodsContainer';
+import ResetButton from './ResetButton';
 
 
 function App() {
@@ -100,23 +102,9 @@ function App() {
         
         </section>
 
-        <section className="goods-container">
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
-        </section>
-        <section className="goods-container">
-        <div className="goods-item">🥚</div>
-        <div className="goods-item">🥚</div>
-        <div className="goods-item">🥚</div>
-        </section>
-        <section className="goods-container">
-        <div className="goods-item">🐸</div>
-        <div className="goods-item">🐸</div>
-        <div className="goods-item">🐸</div>
-        </section>
+        <GoodsContainer dice={dice} frogs={frogs} eggs={eggs} cookies={cookies}/>
         <section>
-        <button className="restart-button">Reiniciar Juego</button>
+        <ResetButton setGroguPosition={setGroguPosition} setCookiesQty={setCookiesQty} setEggsQty={setEggsQty} setFrogsQty={setFrogsQty} setName={setName} setGameStatus={setGameStatus}/>
         </section>
     </main>
       
